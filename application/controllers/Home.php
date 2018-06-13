@@ -58,5 +58,16 @@ class Home extends CI_Controller {
 		redirect('/home/');
 	}
 
+	public function add_questions()
+	{
+		$session = $this->session->userdata('user');
+		if(!isset($session->id) || $session->id == 0)
+		{
+			redirect("/home/");
+		}
+		$this->load->view('add_questions');
+
+	}
+
 
 }
