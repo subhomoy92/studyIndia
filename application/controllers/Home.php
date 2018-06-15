@@ -77,12 +77,12 @@ class Home extends CI_Controller {
 	{
 
 		$question = htmlentities($this->input->post('question'));
-		$option1 = $this->input->post('option1');
-		$option2 = $this->input->post('option2');
-		$option3 = $this->input->post('option3');
-		$option4 = $this->input->post('option4');
+		$option1 = htmlentities($this->input->post('option1'));
+		$option2 = htmlentities($this->input->post('option2'));
+		$option3 = htmlentities($this->input->post('option3'));
+		$option4 = htmlentities($this->input->post('option4'));
 		$answer = $this->input->post('answer');
-		$correct = $this->input->post('correct');
+		$correct = htmlentities($this->input->post('correct'));
 		$chapter = $this->input->post('chapter');
 
 		if($question && $option1 && $option2 && $option3 && $option4 && $correct && $chapter)
