@@ -81,7 +81,7 @@ class Home extends CI_Controller {
 		$option2 = htmlentities($this->input->post('option2'));
 		$option3 = htmlentities($this->input->post('option3'));
 		$option4 = htmlentities($this->input->post('option4'));
-		$answer = $this->input->post('answer');
+		$answer = htmlentities($this->input->post('answer'));
 		$correct = htmlentities($this->input->post('correct'));
 		$chapter = $this->input->post('chapter');
 
@@ -101,6 +101,7 @@ class Home extends CI_Controller {
 			if($correct == 1)
 			{
 				$arr1['is_correct'] = '1';
+				$arr1['explanation'] = $answer;
 			}
 			$this->db->insert('answers',$arr1);
 
@@ -110,6 +111,7 @@ class Home extends CI_Controller {
 			if($correct == 2)
 			{
 				$arr11['is_correct'] = '1';
+				$arr11['explanation'] = $answer;
 			}
 			$this->db->insert('answers',$arr11);
 
@@ -119,6 +121,7 @@ class Home extends CI_Controller {
 			if($correct == 3)
 			{
 				$arr111['is_correct'] = '1';
+				$arr111['explanation'] = $answer;
 			}
 			$this->db->insert('answers',$arr111);
 
@@ -128,6 +131,7 @@ class Home extends CI_Controller {
 			if($correct == 4)
 			{				
 				$arr1111['is_correct'] = '1';
+				$arr1111['explanation'] = $answer;
 			}
 			$this->db->insert('answers',$arr1111);
 		}
