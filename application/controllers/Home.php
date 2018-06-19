@@ -222,5 +222,26 @@ class Home extends CI_Controller {
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
+	public function add_general_awareness()
+	{
+		$session = $this->session->userdata('user');
+		if(!isset($session->id) || $session->id == 0)
+		{
+			redirect("/home/");
+		}
+		$data = array();
+		$this->load->view('add_general_awareness',$data);	
+	}
+
+	public function add_general_awareness_data()
+	{
+		$data['content'] = htmlentities($this->input->post('content'));
+		$data['date'] = date("Y-m-d",strtotime($this->input->post('date')));
+		$data['status'] = '1';
+		$data['views'] = 0;
+		$this->db->insert('general_awareness',$data);
+		echo 1;
+	}
+
 
 }

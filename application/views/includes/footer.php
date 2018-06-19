@@ -52,7 +52,7 @@
     <script src="<?php echo base_url(); ?>/assets/build/js/custom.min.js"></script>
 
 
-    <?php if($this->uri->segment(2) == 'add_questions'){ ?>
+    <?php if($this->uri->segment(2) == 'add_questions' || $this->uri->segment(2) == 'add_general_awareness'){ ?>
     <!-- bootstrap-wysiwyg -->
     <script src="<?php echo base_url(); ?>/assets/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
     <script src="<?php echo base_url(); ?>/assets/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
