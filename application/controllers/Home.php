@@ -66,16 +66,15 @@ class Home extends CI_Controller {
 			redirect("/home/");
 		}
 
-		if($this->input->post())
-		{
-			echo "<pre>";print_r($_POST);exit();
-		}
+		// if($this->input->post())
+		// {
+		// 	echo "<pre>";print_r($_POST);exit();
+		// }
 		$this->load->view('add_questions');
 	}
 
 	public function add_questions_data()
 	{
-
 		$question = htmlentities($this->input->post('question'));
 		$option1 = htmlentities($this->input->post('option1'));
 		$option2 = htmlentities($this->input->post('option2'));
@@ -135,6 +134,92 @@ class Home extends CI_Controller {
 			}
 			$this->db->insert('answers',$arr1111);
 		}
+	}
+
+
+	public function list_category()
+	{
+		$session = $this->session->userdata('user');
+		if(!isset($session->id) || $session->id == 0)
+		{
+			redirect("/home/");
+		}
+
+		$data['category'] = $this->db->get_where('category',array('parent_id'=>0,'status'=>'1'))->result();		
+		$this->load->view('list_category',$data);
+	}
+
+	public function list_subject($id)
+	{
+		$session = $this->session->userdata('user');
+		if(!isset($session->id) || $session->id == 0)
+		{
+			redirect("/home/");
+		}
+
+		$data['subject'] = $this->db->get_where('subject',array('category_id'=>$id,'status'=>'1'))->result();
+		$this->load->view('list_subject',$data);	
+	}
+
+	public function add_category()
+	{
+		$session = $this->session->userdata('user');
+		if(!isset($session->id) || $session->id == 0)
+		{
+			redirect("/home/");
+		}
+
+		if($this->input->post())
+		{
+			$arr['parent_id'] = $this->input->post('parent_id');
+			$arr['name'] = $this->input->post('name');
+			$arr['status'] = "1";
+			if($this->db->insert('category',$arr))
+			{
+				$this->session->set_flashdata('success','Category Added Successfully');
+			}
+			else
+			{
+				$this->session->set_flashdata('error','Please try again');
+			}
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+		else
+		{
+			$data['category'] = $this->db->get_where('category',array('parent_id'=>0))->result();
+			$this->load->view('add_category',$data);	
+		}
+	}
+
+	public function active_or_deactivate($table,$status,$id)
+	{
+		$session = $this->session->userdata('user');
+		if(!isset($session->id) || $session->id == 0)
+		{
+			redirect("/home/");
+		}
+
+		$arr = array('status'=>"$status");
+		$this->db->where('id',$id);
+		$this->db->update($table,$arr);
+
+		// echo $_SERVER['HTTP_REFERER'];exit();
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	public function delete($table,$id)
+	{
+		$session = $this->session->userdata('user');
+		if(!isset($session->id) || $session->id == 0)
+		{
+			redirect("/home/");
+		}
+		
+		$this->db->where('id',$id);
+		$this->db->delete($table);
+
+		// echo $_SERVER['HTTP_REFERER'];exit();
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 
