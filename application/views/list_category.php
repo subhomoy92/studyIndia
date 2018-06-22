@@ -17,7 +17,7 @@
                       <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Status</th>
+                        <th>Show Category</th>
                       </tr>
                     </thead>
 
