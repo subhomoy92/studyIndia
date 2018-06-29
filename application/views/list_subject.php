@@ -29,8 +29,9 @@
                       <tr>
                         <td><?php echo $key+1; ?></td>
                         <td><?php echo $sub->name; ?></td>
-                        <td>                          
-                          &nbsp;<a href="<?php echo base_url(); ?>home/add_questions/<?php echo $sub->id; ?>"><i class="fa fa-plus fa-2x" title="See Chapters" style="color:#05a4d4"></i></a>
+                        <td>
+                        <a href="<?php echo base_url(); ?>home/list_questions/<?php echo $sub->id; ?>"><i class="fa fa-search fa-2x" title="List Question" style="color:#05a4d4"></i></a>                         
+                          &nbsp;<a href="<?php echo base_url(); ?>home/add_questions/<?php echo $sub->id; ?>"><i class="fa fa-plus fa-2x" title="Add Question" style="color:#05a4d4"></i></a>
                         </td>
                       </tr>                      
                       <?php } ?>

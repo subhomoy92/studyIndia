@@ -243,5 +243,11 @@ class Home extends CI_Controller {
 		echo 1;
 	}
 
+	public function list_questions($id)
+	{
+		$data = array();
+		$this->load->view('list_questions',$data);	
+	}
+
 
 }
